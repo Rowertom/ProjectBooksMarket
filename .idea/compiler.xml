@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="BooksMarket" />
+        <module name="HW22BooksMarket-cd93dc1edf9f8292f6a273349ec1717a2c0f0600" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BooksMarket" options="-parameters" />
+      <module name="HW22BooksMarket-cd93dc1edf9f8292f6a273349ec1717a2c0f0600" options="-parameters" />
+    </option>
+  </component>
+</project>

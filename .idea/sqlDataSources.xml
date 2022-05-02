@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="8bb81ade-4d41-438b-8a2f-5523a79aba8d" name="learnUpDbBooks Mapping">
+      <data-sources db="2d8507cb-9b33-4194-934b-3384f678e677" />
+      <scope>
+        <node kind="database" qname="@">
+          <node kind="schema" qname="@" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
