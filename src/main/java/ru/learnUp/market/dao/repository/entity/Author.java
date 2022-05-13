@@ -1,7 +1,6 @@
-package ru.learnUp.market.dao.entity;
+package ru.learnUp.market.dao.repository.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
@@ -10,14 +9,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table
 @Getter
 @Setter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Author implements Serializable {
 
     @Id

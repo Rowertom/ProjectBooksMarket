@@ -2,14 +2,14 @@ package ru.learnUp.market.dao.service;
 
 import org.springframework.stereotype.Service;
 
-import ru.learnUp.market.dao.entity.BooksOrder;
+import ru.learnUp.market.dao.repository.entity.BooksOrder;
 import ru.learnUp.market.dao.repository.BooksOrderRepository;
 
 import java.util.List;
 
 @Service
 public class BooksOrderService {
-    private BooksOrderRepository booksOrderRepository;
+    private final BooksOrderRepository booksOrderRepository;
 
     public BooksOrderService(BooksOrderRepository booksOrderRepository) {
         this.booksOrderRepository = booksOrderRepository;

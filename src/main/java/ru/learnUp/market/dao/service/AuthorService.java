@@ -1,10 +1,11 @@
 package ru.learnUp.market.dao.service;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
-import ru.learnUp.market.dao.entity.Author;
+import ru.learnUp.market.dao.repository.entity.Author;
 import ru.learnUp.market.dao.repository.AuthorRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @Transactional
     public Author createAuthor(Author author) {
         return authorRepository.save(author);
     }
@@ -25,6 +27,12 @@ public class AuthorService {
 
     public Author getAuthorId(Long id){
         return authorRepository.findId(id);
+    }
+
+    @Transactional
+    @CacheEvict(value = "author", key = "#author.authorId")
+    public void update (Author author){
+        authorRepository.save(author);
     }
 
 }

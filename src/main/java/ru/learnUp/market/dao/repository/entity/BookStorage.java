@@ -1,18 +1,17 @@
-package ru.learnUp.market.dao.entity;
+package ru.learnUp.market.dao.repository.entity;
 
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table
 @Getter
 @Setter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class BookStorage {
 
     @Id

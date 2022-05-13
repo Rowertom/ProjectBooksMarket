@@ -1,11 +1,9 @@
-package ru.learnUp.market.dao.entity;
+package ru.learnUp.market.dao.repository.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "books_order")
