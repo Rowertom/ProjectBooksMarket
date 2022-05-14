@@ -14,7 +14,7 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
+@ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Author implements Serializable {
@@ -31,7 +31,7 @@ public class Author implements Serializable {
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @Fetch(FetchMode.JOIN)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Book> books;
 
 }

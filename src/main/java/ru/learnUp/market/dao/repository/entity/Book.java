@@ -12,7 +12,7 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"author"})
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Book implements Serializable {
@@ -38,7 +38,8 @@ public class Book implements Serializable {
     @Column
     private int price;
 
-    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<BookStorage> bookStorage;
-
+//    @OneToOne(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @Fetch(FetchMode.JOIN)
+//    private List<BookStorage> bookStorage;
+//
 }

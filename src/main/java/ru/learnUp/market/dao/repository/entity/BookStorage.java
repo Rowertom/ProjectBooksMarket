@@ -2,6 +2,8 @@ package ru.learnUp.market.dao.repository.entity;
 
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -9,7 +11,7 @@ import javax.persistence.*;
 @Table
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"book"})
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class BookStorage {
@@ -18,11 +20,15 @@ public class BookStorage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookStorageId;
 
-    @ManyToOne
+    @OneToOne(optional = false)
     @JoinColumn
+    @Fetch(FetchMode.JOIN)
     private Book book;
 
     @Column
     private int booksCount;
+
+    @Version
+    private Long version;
 
 }

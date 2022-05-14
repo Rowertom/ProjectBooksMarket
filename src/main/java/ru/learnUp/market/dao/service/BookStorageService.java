@@ -1,12 +1,14 @@
 package ru.learnUp.market.dao.service;
 
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 
 import ru.learnUp.market.dao.repository.entity.Book;
 import ru.learnUp.market.dao.repository.entity.BookStorage;
 import ru.learnUp.market.dao.repository.BookStorageRepository;
 
+import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -30,12 +32,13 @@ public class BookStorageService {
         return bookStorageRepository.getById(id);
     }
 
+    @Lock(value = LockModeType.READ)
     public BookStorage getStorageByBook(Book book) {
         return bookStorageRepository.getByBook(book);
     }
 
     @Transactional
-    @CacheEvict(value = "book_storage", key = "#bookStorage.bookStorageId")
+    @Lock(value = LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     public void update(BookStorage bookStorage) {
         bookStorageRepository.save(bookStorage);
     }
