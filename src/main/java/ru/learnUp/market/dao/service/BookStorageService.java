@@ -38,7 +38,7 @@ public class BookStorageService {
     }
 
     @Transactional
-    @Lock(value = LockModeType.OPTIMISTIC_FORCE_INCREMENT)
+//    @Lock(value = LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     public void update(BookStorage bookStorage) {
         bookStorageRepository.save(bookStorage);
     }
