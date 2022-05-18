@@ -1,4 +1,4 @@
-package ru.learnUp.market.dao.repository.entity;
+package ru.learnUp.market.dao.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;

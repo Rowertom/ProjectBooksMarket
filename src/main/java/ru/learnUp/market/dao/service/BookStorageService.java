@@ -1,11 +1,10 @@
 package ru.learnUp.market.dao.service;
 
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 
-import ru.learnUp.market.dao.repository.entity.Book;
-import ru.learnUp.market.dao.repository.entity.BookStorage;
+import ru.learnUp.market.dao.entity.Book;
+import ru.learnUp.market.dao.entity.BookStorage;
 import ru.learnUp.market.dao.repository.BookStorageRepository;
 
 import javax.persistence.LockModeType;

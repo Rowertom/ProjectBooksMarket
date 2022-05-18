@@ -1,4 +1,4 @@
-package ru.learnUp.market.dao.repository.entity;
+package ru.learnUp.market.dao.entity;
 
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -11,12 +11,11 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
+@ToString(exclude = {"books"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class Author implements Serializable {
 
     @Id
@@ -30,8 +29,6 @@ public class Author implements Serializable {
     private String authorSurname;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @Fetch(FetchMode.SUBSELECT)
     private List<Book> books;
 
 }

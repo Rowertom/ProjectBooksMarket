@@ -3,7 +3,7 @@ package ru.learnUp.market.dao.service;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
-import ru.learnUp.market.dao.repository.entity.Customer;
+import ru.learnUp.market.dao.entity.Customer;
 import ru.learnUp.market.dao.repository.CustomerRepository;
 
 import javax.transaction.Transactional;

@@ -1,30 +1,26 @@
 package ru.learnUp.market;
 
-import org.hibernate.StaleStateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
-import ru.learnUp.market.dao.repository.entity.Book;
-import ru.learnUp.market.dao.service.AuthorService;
-import ru.learnUp.market.dao.service.BookService;
-import ru.learnUp.market.dao.service.BookStorageService;
 
+@Slf4j
 @SpringBootApplication
 @EnableCaching
 public class BooksShopApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(BooksShopApplication.class);
+//    private static final Logger log = LoggerFactory.getLogger(BooksShopApplication.class);
 
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(BooksShopApplication.class, args);
 
-        AuthorService authorService = context.getBean(AuthorService.class);
-        BookService bookService = context.getBean(BookService.class);
+        Gson gson = new Gson();
+//        AuthorService authorService = context.getBean(AuthorService.class);
+//        BookService bookService = context.getBean(BookService.class);
 //        BookStorageService bookStorageService = context.getBean((BookStorageService.class));
 
 //        updateAsync(bookStorageService, bookService.getBookId(1L));

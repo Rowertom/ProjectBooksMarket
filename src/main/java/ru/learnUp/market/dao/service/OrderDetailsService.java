@@ -1,7 +1,7 @@
 package ru.learnUp.market.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.learnUp.market.dao.repository.entity.OrderDetails;
+import ru.learnUp.market.dao.entity.OrderDetails;
 import ru.learnUp.market.dao.repository.OrderDetailsRepository;
 
 import java.util.List;

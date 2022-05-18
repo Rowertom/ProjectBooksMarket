@@ -1,4 +1,4 @@
-package ru.learnUp.market.dao.repository.entity;
+package ru.learnUp.market.dao.entity;
 
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -6,25 +6,18 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table
 @Getter
 @Setter
 @ToString(exclude = {"author"})
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
-
-    @ManyToOne
-    @JoinColumn
-    @Fetch(FetchMode.JOIN)
-    private Author author;
 
     @Column
     private String bookName;
@@ -37,6 +30,12 @@ public class Book implements Serializable {
 
     @Column
     private int price;
+
+    @ManyToOne
+    @JoinColumn
+    @Fetch(FetchMode.JOIN)
+    private Author author;
+
 
 //    @OneToOne(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @Fetch(FetchMode.JOIN)
