@@ -1,6 +1,7 @@
 package ru.learnUp.market.controllers;
 
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.learnUp.market.dao.entity.Author;
 import ru.learnUp.market.dao.filters.AuthorFilter;
@@ -27,6 +28,7 @@ public class AuthorController {
         this.mapper = mapper;
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping
     public List<AuthorView> getAuthors(
             @RequestParam(value = "name", required = false) String name,
@@ -38,11 +40,13 @@ public class AuthorController {
                 .collect(Collectors.toList());
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/{authorId}")
     public AuthorView getAuthor(@PathVariable("authorId") Long authorId) {
         return mapper.mapToView(authorService.getAuthorById(authorId));
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping
     public AuthorView createAuthor(@RequestBody AuthorView body){
         if (body.getAuthorId() != null) {
@@ -55,6 +59,7 @@ public class AuthorController {
         return mapper.mapToView(createdAuthor);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("/{authorId}")
     public AuthorView updateAuthor(
             @PathVariable("authorId") Long authorId,
@@ -80,6 +85,7 @@ public class AuthorController {
         return mapper.mapToView(updated);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/{authorId}")
     public Boolean deleteAuthor(@PathVariable("authorId") Long id){
         return authorService.delete(id);
