@@ -46,7 +46,6 @@ public class BookService {
     }
 
     @Transactional
-//    @CacheEvict(value = "book", key = "#book.bookId")
     public Book update(Book book){
         return bookRepository.save(book);
     }

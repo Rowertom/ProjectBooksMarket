@@ -31,7 +31,6 @@ public class CustomerService {
     }
 
     @Transactional
-    @CacheEvict(value = "customer", key = "#customer.customerId")
     public void update(Customer customer){
         customerRepository.save(customer);
     }
