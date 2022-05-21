@@ -10,21 +10,23 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class BooksOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @OneToOne
+   @ManyToOne
     @JoinColumn
     private Customer customer;
 
     @Column
     private int finalPrice;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderDetails> listOfOrderDetails;
+
 
 }

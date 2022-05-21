@@ -6,6 +6,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table
@@ -20,15 +21,12 @@ public class BookStorage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookStorageId;
 
-    @OneToOne(optional = false)
+    @ManyToOne
     @JoinColumn
-    @Fetch(FetchMode.JOIN)
     private Book book;
 
     @Column
     private int booksCount;
 
-    @Version
-    private Long version;
 
 }

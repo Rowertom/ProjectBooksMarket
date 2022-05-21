@@ -25,4 +25,10 @@ public class OrderDetailsService {
     public OrderDetails getOrderDetailsId(Long id){
         return orderDetailsRepository.getById(id);
     }
+
+
+    public Boolean delete(Long id) {
+        orderDetailsRepository.delete(orderDetailsRepository.getById(id));
+        return true;
+    }
 }

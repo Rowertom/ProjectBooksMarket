@@ -28,6 +28,7 @@ public class AuthorController {
         this.mapper = mapper;
     }
 
+
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping
     public List<AuthorView> getAuthors(
@@ -46,7 +47,7 @@ public class AuthorController {
         return mapper.mapToView(authorService.getAuthorById(authorId));
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public AuthorView createAuthor(@RequestBody AuthorView body){
         if (body.getAuthorId() != null) {
@@ -59,7 +60,7 @@ public class AuthorController {
         return mapper.mapToView(createdAuthor);
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN"})
     @PutMapping("/{authorId}")
     public AuthorView updateAuthor(
             @PathVariable("authorId") Long authorId,
@@ -85,7 +86,7 @@ public class AuthorController {
         return mapper.mapToView(updated);
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{authorId}")
     public Boolean deleteAuthor(@PathVariable("authorId") Long id){
         return authorService.delete(id);

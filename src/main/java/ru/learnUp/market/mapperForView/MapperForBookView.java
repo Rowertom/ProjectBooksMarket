@@ -1,11 +1,10 @@
 package ru.learnUp.market.mapperForView;
 
-import liquibase.pro.packaged.T;
 import org.springframework.stereotype.Component;
 import ru.learnUp.market.dao.entity.Author;
 import ru.learnUp.market.dao.entity.Book;
 import ru.learnUp.market.view.BookView;
-import ru.learnUp.market.view.ViewAuthorForBook;
+import ru.learnUp.market.view.ViewAuthorFor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class MapperForBookView {
         bookView.setIssueDate(book.getIssueDate());
         bookView.setLeavesCount(book.getLeavesCount());
         bookView.setPrice(book.getPrice());
-        bookView.setViewAuthor(new ViewAuthorForBook(
+        bookView.setViewAuthor(new ViewAuthorFor(
                         book.getAuthor().getAuthorId(),
                         book.getAuthor().getAuthorName(),
                         book.getAuthor().getAuthorSurname()

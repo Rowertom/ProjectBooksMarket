@@ -22,10 +22,11 @@ public class OrderDetails {
 
     @OneToOne
     @JoinColumn
-    private BookStorage bookStorage;
+    private Book book;
 
     @Column
     private int booksCount;
+
 
 
 }

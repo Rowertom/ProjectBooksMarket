@@ -1,13 +1,14 @@
 package ru.learnUp.market.dao.service;
 
-import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ru.learnUp.market.dao.entity.Book;
 import ru.learnUp.market.dao.entity.BookStorage;
+import ru.learnUp.market.dao.filters.BookStorageFilter;
 import ru.learnUp.market.dao.repository.BookStorageRepository;
+import ru.learnUp.market.dao.specification.BookStorageSpecification;
 
-import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class BookStorageService {
         this.bookStorageRepository = bookStorageRepository;
     }
 
+    public BookStorage getStorageByBook(Book book) {
+        return bookStorageRepository.getByBook(book);
+    }
     public BookStorage createBookStorage(BookStorage bookStorage) {
         return bookStorageRepository.save(bookStorage);
     }
@@ -31,15 +35,11 @@ public class BookStorageService {
         return bookStorageRepository.getById(id);
     }
 
-    @Lock(value = LockModeType.READ)
-    public BookStorage getStorageByBook(Book book) {
-        return bookStorageRepository.getByBook(book);
-    }
-
     @Transactional
 //    @Lock(value = LockModeType.OPTIMISTIC_FORCE_INCREMENT)
-    public void update(BookStorage bookStorage) {
+    public BookStorage update(BookStorage bookStorage) {
         bookStorageRepository.save(bookStorage);
+        return bookStorage;
     }
 
     @Transactional
@@ -56,5 +56,16 @@ public class BookStorageService {
         bookStorage.setBooksCount(bookStorage.getBooksCount() + booksCount);
         update(bookStorage);
         return bookStorage.getBooksCount();
+    }
+
+    public Boolean delete(Long id) {
+        bookStorageRepository.delete(bookStorageRepository.getById(id));
+        return true;
+    }
+    public List<BookStorage> getBooksStorageBy(BookStorageFilter bookStorageFilter){
+        Specification<BookStorage> specification = Specification.where(
+                BookStorageSpecification.useFilterBS(bookStorageFilter)
+        );
+        return bookStorageRepository.findAll(specification);
     }
 }

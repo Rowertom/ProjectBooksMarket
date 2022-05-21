@@ -39,6 +39,7 @@ public class UserController {
     }
 
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping
     public Boolean createUser(@RequestBody UserView user) {
         User entity = new User();

@@ -5,15 +5,15 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
 
     @Id
@@ -28,6 +28,10 @@ public class Customer {
 
     @Column
     private Date birthDate;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<BooksOrder> orders;
+
 
 
 }

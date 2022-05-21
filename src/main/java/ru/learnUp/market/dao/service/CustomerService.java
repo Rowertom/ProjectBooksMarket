@@ -1,10 +1,12 @@
 package ru.learnUp.market.dao.service;
 
-import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ru.learnUp.market.dao.entity.Customer;
+import ru.learnUp.market.dao.filters.CustomerFilter;
 import ru.learnUp.market.dao.repository.CustomerRepository;
+import ru.learnUp.market.dao.specification.CustomerSpecification;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -31,7 +33,21 @@ public class CustomerService {
     }
 
     @Transactional
-    public void update(Customer customer){
+    public Customer update(Customer customer){
         customerRepository.save(customer);
+        return customer;
     }
+
+    public List<Customer> getCustomersBy(CustomerFilter customerFilter){
+        Specification<Customer> specification = Specification.where(
+                CustomerSpecification.useFilterC(customerFilter)
+        );
+        return customerRepository.findAll(specification);
+    }
+
+    public Boolean delete(Long id) {
+        customerRepository.delete(customerRepository.getById(id));
+        return true;
+    }
+
 }

@@ -31,9 +31,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Boolean deleteBook(Long id) {
-        bookRepository.delete(bookRepository.getById(id));
-        return true;
+    public Book update(Book book){
+        return bookRepository.save(book);
     }
 
     public List<Book> getBooksBy(BookFilter bookFilter){
@@ -46,7 +45,8 @@ public class BookService {
     }
 
     @Transactional
-    public Book update(Book book){
-        return bookRepository.save(book);
+    public Boolean deleteBook(Long id) {
+        bookRepository.delete(bookRepository.getById(id));
+        return true;
     }
 }

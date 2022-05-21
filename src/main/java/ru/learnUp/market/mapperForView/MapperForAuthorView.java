@@ -3,9 +3,12 @@ package ru.learnUp.market.mapperForView;
 import org.springframework.stereotype.Component;
 import ru.learnUp.market.dao.entity.Author;
 import ru.learnUp.market.dao.entity.Book;
+import ru.learnUp.market.dao.entity.BookStorage;
 import ru.learnUp.market.view.AuthorView;
-import ru.learnUp.market.view.ViewBookForAuthor;
+import ru.learnUp.market.view.ViewBookFor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -19,7 +22,7 @@ public class MapperForAuthorView {
         if (author.getBooks() != null) {
             authorView.setBooks(
                     author.getBooks().stream()
-                            .map(book -> new ViewBookForAuthor(
+                            .map(book -> new ViewBookFor(
                                     book.getBookId(),
                                     book.getBookName(),
                                     book.getIssueDate(),
@@ -35,6 +38,7 @@ public class MapperForAuthorView {
     public Author mapFromView(AuthorView authorView) {
 
         Author author = new Author();
+        List<BookStorage> bookstorage = new ArrayList<>();
         author.setAuthorId(authorView.getAuthorId());
         author.setAuthorName(authorView.getAuthorName());
         author.setAuthorSurname(authorView.getAuthorSurname());
@@ -47,7 +51,9 @@ public class MapperForAuthorView {
                                     book.getIssueDate(),
                                     book.getLeavesCount(),
                                     book.getPrice(),
-                                    author)
+                                    author,
+                                    bookstorage
+                                    )
                             )
                             .collect(Collectors.toList())
             );

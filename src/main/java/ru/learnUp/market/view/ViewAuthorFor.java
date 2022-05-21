@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ViewAuthorForBook {
+public class ViewAuthorFor {
 
     private Long authorId;
     private String authorName;

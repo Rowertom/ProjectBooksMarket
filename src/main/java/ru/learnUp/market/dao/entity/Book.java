@@ -6,11 +6,12 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@ToString(exclude = {"author"})
+@ToString(exclude = {"author", ""})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book implements Serializable {
@@ -33,12 +34,10 @@ public class Book implements Serializable {
 
     @ManyToOne
     @JoinColumn
-    @Fetch(FetchMode.JOIN)
     private Author author;
 
 
-//    @OneToOne(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @Fetch(FetchMode.JOIN)
-//    private List<BookStorage> bookStorage;
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<BookStorage> bookStorage;
 //
 }

@@ -1,8 +1,14 @@
 package ru.learnUp.market.view;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookView {
 
     private Long bookId;
@@ -10,5 +16,8 @@ public class BookView {
     private int issueDate;
     private int leavesCount;
     private int price;
-    private ViewAuthorForBook viewAuthor;
+    private ViewAuthorFor viewAuthor;
+    private List<ViewBookStorageFor> bookStorage;
+
+
 }
